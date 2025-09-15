@@ -23,11 +23,15 @@ namespace ServiceBrokerInProcTestFunc
 
         public void Configure(IWebJobsBuilder builder)
         {
-            Sdk.CreateMeterProviderBuilder()
-                .SetResourceBuilder(ResourceBuilder.CreateDefault())
-                .AddMeter(nameof(ServiceBrokerInProcTestFunc))
-                .AddAzureMonitorMetricExporter(o => o.ConnectionString = Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING"))
-                .Build();
+            string appInsightsConnString = Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING");
+            if (!string.IsNullOrEmpty(appInsightsConnString))
+            {
+                Sdk.CreateMeterProviderBuilder()
+                    .SetResourceBuilder(ResourceBuilder.CreateDefault())
+                    .AddMeter(nameof(ServiceBrokerInProcTestFunc))
+                    .AddAzureMonitorMetricExporter(o => o.ConnectionString = appInsightsConnString)
+                    .Build();
+            }
 
             SendMessagesAsync();
         }
