@@ -7,10 +7,10 @@
 
     "SQL_CONN_STRING": "my-sql-connection-string",
 
-    "SERVICE_NAME": "my-service-broker-service",
-    "QUEUE_NAME": "my-service-broker-queue",
+    "SERVICE_NAME": "MyServiceBrokerService",
+    "QUEUE_NAME": "MyServiceBrokerQueue",
 
-    "MESSAGES_PER_SECOND": "256",
+    "MESSAGES_PER_SECOND": "32",
     "POLL_INTERVAL_IN_MS": "1000",
     "DEGREE_OF_PARALLELIZM": "32",
 
